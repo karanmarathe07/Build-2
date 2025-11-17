@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollGlow from "./components/ScrollGlow";
+import ScrollProgress from "./components/ScrollProgress";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Reviews from "./pages/Reviews";
@@ -24,6 +25,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="min-h-screen bg-background">
+          <ScrollProgress />
           <ScrollGlow />
           <Navbar />
           <Routes>
