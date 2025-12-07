@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Briefcase, ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { UserProfileCard } from "./user-profile-card";
 
 // --- Assets ---
 import imgRupesh from "../../profile pic/Rupesh.jpeg";
@@ -122,60 +123,32 @@ export default function OrbitCarousel() {
         switch (screenSize) {
             case 'xs':
                 return {
-                    containerRadius: 130, // increased for 9 items
+                    containerRadius: 130,
                     profileSize: 45,
-                    cardWidth: 'w-64',
                     avatarSize: 'w-16 h-16',
-                    avatarMargin: '-mt-10',
-                    fontSize: {
-                        name: 'text-base',
-                        role: 'text-xs',
-                        email: 'text-[10px]'
-                    }
                 };
             case 'sm':
                 return {
                     containerRadius: 170,
                     profileSize: 55,
-                    cardWidth: 'w-72',
                     avatarSize: 'w-20 h-20',
-                    avatarMargin: '-mt-12',
-                    fontSize: {
-                        name: 'text-lg',
-                        role: 'text-xs',
-                        email: 'text-[10px]'
-                    }
                 };
             case 'md':
                 return {
                     containerRadius: 230,
                     profileSize: 70,
-                    cardWidth: 'w-80',
                     avatarSize: 'w-24 h-24',
-                    avatarMargin: '-mt-14',
-                    fontSize: {
-                        name: 'text-xl',
-                        role: 'text-sm',
-                        email: 'text-xs'
-                    }
                 };
             default:
                 return {
                     containerRadius: 290, // Significant increase for desktop
                     profileSize: 85,
-                    cardWidth: 'w-96',
                     avatarSize: 'w-28 h-28',
-                    avatarMargin: '-mt-16',
-                    fontSize: {
-                        name: 'text-2xl',
-                        role: 'text-sm',
-                        email: 'text-xs'
-                    }
                 };
         }
     };
 
-    const { containerRadius, profileSize, cardWidth, avatarSize, avatarMargin, fontSize } = getResponsiveValues();
+    const { containerRadius, profileSize } = getResponsiveValues();
     const containerSize = containerRadius * 2 + 150; // Add breathing room
 
     // Calculate rotation for each profile (Preserved Logic)
@@ -229,7 +202,7 @@ export default function OrbitCarousel() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_90%)]" />
             </div>
 
-            {/* --- ABOUT HEADING (New addition) --- */}
+            {/* --- ABOUT HEADING --- */}
             <div className="relative z-10 mb-8 sm:mb-12 text-center px-4">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">About Us</h2>
                 <p className="text-neutral-500 max-w-lg mx-auto text-sm md:text-base">
@@ -246,7 +219,7 @@ export default function OrbitCarousel() {
                 <div className="absolute inset-0 rounded-full border border-white/5 pointer-events-none scale-75 opacity-50" />
                 <div className="absolute inset-0 rounded-full border border-dashed border-white/5 pointer-events-none scale-110 opacity-30" />
 
-                {/* --- Center Card (Active Person) --- */}
+                {/* --- Center Card (New UserProfileCard Integration) --- */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={people[activeIndex].id}
@@ -258,81 +231,36 @@ export default function OrbitCarousel() {
                             stiffness: 260,
                             damping: 24
                         }}
-                        className={`
-              relative z-30 flex flex-col items-center
-              ${cardWidth} 
-              bg-black/40 backdrop-blur-xl 
-              border border-white/10 
-              shadow-[0_24px_50px_-12px_rgba(0,0,0,0.7)]
-              rounded-3xl p-8
-            `}
+                        // Card container handles positioning
+                        className="absolute z-30 flex flex-col items-center justify-center"
                     >
-                        {/* Highlight Top Edge */}
-                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
-
-                        {/* Avatar */}
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.4, delay: 0.1 }}
-                            className={`relative ${avatarSize} ${avatarMargin} rounded-full z-20 shadow-2xl`}
-                        >
-                            <img
-                                src={people[activeIndex].profile}
-                                alt={people[activeIndex].name}
-                                onError={safeImage}
-                                className="w-full h-full object-cover rounded-full border-[3px] border-[#111]"
-                            />
-                        </motion.div>
-
-                        {/* Content */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.2 }}
-                            className="text-center mt-5 space-y-2 w-full"
-                        >
-                            <h2 className={`font-semibold text-white tracking-tight ${fontSize.name}`}>
-                                {people[activeIndex].name}
-                            </h2>
-
-                            <div className={`flex items-center justify-center gap-2 text-neutral-400 font-medium ${fontSize.role}`}>
-                                <Briefcase className="w-3.5 h-3.5" />
-                                <span>{people[activeIndex].role}</span>
-                            </div>
-
-                            <div className={`flex items-center justify-center gap-2 text-neutral-600 ${fontSize.email}`}>
-                                <Mail className="w-3.5 h-3.5" />
-                                <span>{people[activeIndex].email}</span>
-                            </div>
-                        </motion.div>
-
-                        {/* Actions */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3, delay: 0.3 }}
-                            className="flex items-center gap-4 mt-8 w-full justify-center px-2"
-                        >
+                        {/* Nav Buttons Positioned Around Card */}
+                        <div className="absolute -left-16 sm:-left-20 top-1/2 -translate-y-1/2 z-40">
                             <button
                                 onClick={prev}
                                 className="group p-3 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 transition-colors text-white/50 hover:text-white"
                             >
-                                <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+                                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
                             </button>
+                        </div>
 
-                            <button className="flex-1 py-3 px-6 rounded-full bg-white/90 text-black font-medium text-sm hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all flex items-center justify-center gap-2">
-                                <span>Connect</span>
-                                <Plus className="w-3.5 h-3.5" />
-                            </button>
-
+                        <div className="absolute -right-16 sm:-right-20 top-1/2 -translate-y-1/2 z-40">
                             <button
                                 onClick={next}
                                 className="group p-3 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 transition-colors text-white/50 hover:text-white"
                             >
-                                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                                <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                             </button>
-                        </motion.div>
+                        </div>
+
+                        {/* INTEGRATED USER PROFILE CARD */}
+                        <UserProfileCard
+                            name={people[activeIndex].name}
+                            role={people[activeIndex].role}
+                            email={people[activeIndex].email}
+                            avatar={people[activeIndex].profile}
+                        />
+
                     </motion.div>
                 </AnimatePresence>
 
