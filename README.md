@@ -1,64 +1,16 @@
-🌐 My Project
+# React + Vite
 
-A modern, high-performance web application built using React, TypeScript, Vite, Tailwind CSS, and shadcn/ui.
-Clean structure, fast development workflow, and production-ready code.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-🚀 Features
+Currently, two official plugins are available:
 
-⚡ Vite-powered for super-fast development & builds
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-🧩 Component-based architecture (React + TypeScript)
+## React Compiler
 
-🎨 Beautiful UI with Tailwind CSS & shadcn/ui
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-📱 Fully responsive layout
+## Expanding the ESLint configuration
 
-🛠 Easy to customize and scale
-
-🌍 Ready for deployment (Vercel, Netlify, GitHub Pages, etc.)
-
-🛠 Tech Stack
-
-React
-
-TypeScript
-
-Vite
-
-Tailwind CSS
-
-shadcn/ui
-
-Node.js + npm
-
-📂 Folder Structure
-my-project/
-│── public/
-│── src/
-│   ├── components/
-│   ├── pages/
-│   ├── hooks/
-│   ├── lib/
-│   ├── styles/
-│   ├── App.tsx
-│   └── main.tsx
-│── .gitignore
-│── package.json
-│── tsconfig.json
-│── tailwind.config.js
-│── vite.config.ts
-└── README.md
-
-⚙️ Getting Started
-1. Clone the Repo
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
-
-2. Install Dependencies
-npm install
-
-3. Start Development Server
-npm run dev
-
-🏗 Build for Production
-npm run build
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

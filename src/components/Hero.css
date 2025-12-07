@@ -1,0 +1,215 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* 
+    FLOATING IMAGES CONTAINER
+    
+    CRITICAL: z-index: 1 keeps images BEHIND text (z-index: 10)
+*/
+.floating-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* 
+    INDIVIDUAL FLOATING IMAGES
+    
+    ENHANCED: Larger sizes, stronger parallax
+*/
+.floating-image {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0.7;
+    filter: brightness(0.8) saturate(1.1);
+    will-change: transform, opacity, filter;
+    transform-origin: center;
+    cursor: pointer;
+
+    /* Shadow for depth */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* Smooth transitions */
+    transition: opacity 0.4s ease, filter 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+}
+
+/* 
+    ULTRA-REALISTIC GLASSMORPHISM EFFECT
+    
+    Applied when another image is hovered
+    
+    Enhanced with:
+    - Stronger blur (6px) for reduced sharpness
+    - Lower brightness (0.4) for decreased exposure
+    - Desaturated colors (0.5 saturation + 0.3 grayscale)
+    - Strong backdrop blur (15px) for depth
+    - Subtle border for glass edge effect
+*/
+.floating-image.glassmorphic {
+    opacity: 0.2;
+    filter: brightness(0.4) saturate(0.5) blur(6px) grayscale(0.3);
+    backdrop-filter: blur(15px) brightness(0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 
+    HOVER STATE
+    
+    Directly hovered image becomes prominent
+*/
+.floating-image:hover {
+    opacity: 0.9;
+    filter: brightness(1) saturate(1.3);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* 
+    HERO TEXT CONTENT
+    
+    CRITICAL: z-index: 10 keeps text IN FRONT of images (z-index: 1)
+*/
+.hero-content {
+    max-width: 1600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Re-enable pointer events for text elements */
+.hero-content * {
+    pointer-events: auto;
+}
+
+/* Tagline */
+.tagline {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Hero Heading */
+.hero-heading {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.heading-line {
+    display: block;
+}
+
+.highlight {
+    color: var(--text-accent);
+    position: relative;
+    display: inline-block;
+}
+
+/* Inline Circular Images */
+.inline-image-wrapper {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 0.25rem;
+}
+
+.inline-circle-image {
+    width: clamp(3rem, 5.5vw, 4.5rem);
+    height: clamp(3rem, 5.5vw, 4.5rem);
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    box-shadow: 0 4px 20px rgba(255, 235, 59, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.inline-circle-image:hover {
+    transform: scale(1.05);
+}
+
+/* Subtext */
+.hero-subtext {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .hero-content {
+        gap: 2rem;
+    }
+
+    .tagline {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+    }
+
+    .hero-heading {
+        gap: 0.2rem;
+        line-height: 1.1;
+    }
+
+    .inline-image-wrapper {
+        margin: 0 0.15rem;
+    }
+
+    /* Reduce floating image sizes on mobile */
+    .floating-image {
+        transform: scale(0.6);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .tagline {
+        font-size: 0.6rem;
+    }
+
+    .hero-heading {
+        line-height: 1.15;
+    }
+
+    /* Further reduce on very small screens */
+    .floating-image {
+        transform: scale(0.4);
+    }
+}
