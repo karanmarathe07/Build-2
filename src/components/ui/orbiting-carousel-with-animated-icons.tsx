@@ -20,66 +20,75 @@ import imgTanishq from "../../profile pic/tanishq.jpg";
 const people = [
     {
         id: 1,
-        name: "Karan",
-        role: "Full Stack Creative",
+        name: "Karan Marathe",
+        role: "AWS Specialist",
         email: "karan@naxshtra.ai",
         profile: imgKaran,
+        tagline: "Deploys cloud systems with zero downtime",
     },
     {
         id: 2,
-        name: "Rucha",
-        role: "Product Designer",
+        name: "Rucha Ahire",
+        role: "React Developer",
         email: "rucha@naxshtra.ai",
         profile: imgRucha,
+        tagline: "Creates accessible experiences that everyone can use",
     },
     {
         id: 3,
-        name: "Ashish",
-        role: "Senior Developer",
+        name: "Ashish Aanand",
+        role: "UI/UX Designer",
         email: "ashish@naxshtra.ai",
         profile: imgAshish,
+        tagline: "Turns ideas into stunning designs",
     },
     {
         id: 4,
-        name: "Chetan",
-        role: "Backend Architect",
+        name: "Chetan Sonawane",
+        role: "Mobile App Developer",
         email: "chetan@naxshtra.ai",
         profile: imgChetan,
+        tagline: "Solves backend bottlenecks before they even appear",
     },
     {
         id: 5,
-        name: "Tanishq",
-        role: "Frontend Specialist",
+        name: "Tanishq Jarsodiwala",
+        role: "Full Stack Developer",
         email: "tanishq@naxshtra.ai",
         profile: imgTanishq,
+        tagline: "Creates pixel-perfect UIs effortlessly",
     },
     {
         id: 6,
-        name: "Atharva",
-        role: "AI Engineer",
+        name: "Atharva Bhatt",
+        role: "Frontend Developer",
         email: "atharva@naxshtra.ai",
         profile: imgAtharva,
+        tagline: "Turns imagination into beautiful UI",
     },
     {
         id: 7,
-        name: "Manas",
-        role: "Data Scientist",
+        name: "Manas Kulkarni",
+        role: "Digital Marketing Specialist",
         email: "manas@naxshtra.ai",
         profile: imgManas,
+        tagline: "Turns data into high-impact campaigns",
     },
     {
         id: 8,
-        name: "Rupesh",
-        role: "DevOps Engineer",
+        name: "Rupesh Shinde",
+        role: "AI Developer",
         email: "rupesh@naxshtra.ai",
         profile: imgRupesh,
+        tagline: "Solves complex logic like magic",
     },
     {
         id: 9,
-        name: "Bhavesh",
-        role: "System Analyst",
+        name: "Bhavesh Ahire",
+        role: "Social Media Manager",
         email: "bhavesh@naxshtra.ai",
         profile: imgBhavesh,
+        tagline: "Makes posts go viral effortlessly",
     },
 ];
 
@@ -259,6 +268,7 @@ export default function OrbitCarousel() {
                             role={people[activeIndex].role}
                             email={people[activeIndex].email}
                             avatar={people[activeIndex].profile}
+                            tagline={people[activeIndex].tagline}
                         />
 
                     </motion.div>
